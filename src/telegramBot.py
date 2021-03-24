@@ -1,6 +1,8 @@
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 import os
+
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import (CallbackContext, CallbackQueryHandler,
+                          CommandHandler, Updater)
 
 
 def main():

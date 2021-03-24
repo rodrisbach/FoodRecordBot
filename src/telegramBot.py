@@ -18,17 +18,15 @@ def main():
 
 
 def start(update, context):
-    keyboard = [
-        [
-            InlineKeyboardButton("Lunes", callback_data="LU"),
-            InlineKeyboardButton("Martes", callback_data="MA"),
-            InlineKeyboardButton("Miercoles", callback_data="MI"),
-            InlineKeyboardButton("Jueves", callback_data="JU"),
-            InlineKeyboardButton("Viernes", callback_data="VI"),
-            InlineKeyboardButton("Sabado", callback_data="SA"),
-            InlineKeyboardButton("Domingo", callback_data="DO"),
-        ]
-    ]
+    keyboard = [[
+        InlineKeyboardButton("Lunes", callback_data="LU"),
+        InlineKeyboardButton("Martes", callback_data="MA"),
+        InlineKeyboardButton("Miercoles", callback_data="MI"),
+        InlineKeyboardButton("Jueves", callback_data="JU"),
+        InlineKeyboardButton("Viernes", callback_data="VI"),
+        InlineKeyboardButton("Sabado", callback_data="SA"),
+        InlineKeyboardButton("Domingo", callback_data="DO"),
+    ]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     update.message.reply_text("Please choose:", reply_markup=reply_markup)
 

@@ -4,9 +4,9 @@ import os
 
 
 def main():
-    TOKEN = os.getenv('TOKEN')
+    TOKEN = os.getenv("TOKEN")
     updater = Updater(token=TOKEN, use_context=True)
-    updater.dispatcher.add_handler(CommandHandler('start', start))
+    updater.dispatcher.add_handler(CommandHandler("start", start))
     updater.dispatcher.add_handler(CallbackQueryHandler(button))
     updater.start_polling()
 
@@ -24,7 +24,7 @@ def start(update, context):
         ]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
-    update.message.reply_text('Please choose:', reply_markup=reply_markup)
+    update.message.reply_text("Please choose:", reply_markup=reply_markup)
 
 
 def button(update, context):

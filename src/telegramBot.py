@@ -1,13 +1,6 @@
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext
+from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, CallbackContext, ConversationHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 import os
-
-def main():
-    TOKEN = os.getenv('TOKEN')
-    updater = Updater(token=TOKEN, use_context=True)
-    updater.dispatcher.add_handler(CommandHandler('start',showDays))
-    updater.dispatcher.add_handler(CallbackQueryHandler(chooseDay))
-    updater.start_polling()
 
 def showDays(update, context):
     keyboard = [
@@ -37,6 +30,23 @@ def chooseDay(update, context):
     query = update.callback_query
     query.answer()
     query.edit_message_text(text=f"El dia seleccionado es: {days[query.data]}")
+
+def main():
+    TOKEN = os.getenv('TOKEN')
+    updater = Updater(token=TOKEN, use_context=True)
+    dispatcher = updater.dispatcher
+    dispatcher.add_handler(CommandHandler('start',showDays))
+    dispatcher.add_handler(CallbackQueryHandler(chooseDay))
+    updater.start_polling()
+
+
+    conv_handler = ConversationHandler(
+        entry_points=[CommandHandler('start')]
+    )
+    dispatcher.add_handler(conv_handler)
+    updater.start_polling()
+    updater.idle()
+
 
 if __name__ == "__main__":
     main()
